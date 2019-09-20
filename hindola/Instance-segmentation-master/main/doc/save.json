@@ -1,0 +1,372 @@
+
+	{
+	  "_via_settings": {
+	    "ui": {
+	      "annotation_editor_height": 30,
+	      "annotation_editor_fontsize": 0.6000000000000001,
+	      "leftsidebar_width": 18,
+	      "image_grid": {
+	        "img_height": 80,
+	        "rshape_fill": "none",
+	        "rshape_fill_opacity": 0.3,
+	        "rshape_stroke": "yellow",
+	        "rshape_stroke_width": 2,
+	        "show_region_shape": true,
+	        "show_image_policy": "all"
+	      },
+	      "image": {
+	        "region_label": "region_id",
+	        "region_label_font": "10px Sans"
+	      }
+	    },
+	    "core": {
+	      "buffer_size": 18,
+	      "filepath": {},
+	      "default_filepath": ""
+	    },
+	    "project": {
+	      "name": "corrected_3"
+	    }
+	  },
+	  "_via_img_metadata": {
+	    "": {
+	      "filename": "http://10.5.0.142:9006/penn_in_hand/images/916_1.jpg",
+	      "size": -1,
+	      "regions": [
+	{
+	          "shape_attributes": {
+	            "name": "polygon",
+	            "all_points_x": [ 112,
+74,
+69,
+74,
+192,
+226,
+239,
+349,
+361,
+358,
+257,
+239,
+113,
+112],
+	            "all_points_y": [76,
+74,
+54,
+50,
+50,
+51,
+50,
+49,
+55,
+73,
+73,
+75,
+75,
+76]
+	          },
+	          "region_attributes": {
+	            "Spatial Annotation":"Character Line Segment",
+	            "Comments": ""
+	          },
+	          "timestamp": {
+	            "StartingTime": 6016533,
+	            "EndTime": 6035060
+	          }
+	        },{
+	          "shape_attributes": {
+	            "name": "polygon",
+	            "all_points_x": [ 352,
+328,
+195,
+181,
+136,
+75,
+71,
+77,
+159,
+229,
+345,
+352,
+352],
+	            "all_points_y": [206,
+205,
+205,
+203,
+203,
+206,
+186,
+181,
+180,
+183,
+182,
+185,
+206]
+	          },
+	          "region_attributes": {
+	            "Spatial Annotation":"Character Line Segment",
+	            "Comments": ""
+	          },
+	          "timestamp": {
+	            "StartingTime": 6016533,
+	            "EndTime": 6035060
+	          }
+	        },{
+	          "shape_attributes": {
+	            "name": "polygon",
+	            "all_points_x": [ 188,
+99,
+64,
+66,
+74,
+103,
+223,
+307,
+353,
+361,
+367,
+363,
+228,
+188],
+	            "all_points_y": [100,
+100,
+97,
+82,
+78,
+79,
+79,
+76,
+78,
+81,
+94,
+99,
+99,
+100]
+	          },
+	          "region_attributes": {
+	            "Spatial Annotation":"Character Line Segment",
+	            "Comments": ""
+	          },
+	          "timestamp": {
+	            "StartingTime": 6016533,
+	            "EndTime": 6035060
+	          }
+	        },{
+	          "shape_attributes": {
+	            "name": "polygon",
+	            "all_points_x": [ 347,
+218,
+196,
+71,
+66,
+72,
+162,
+162,
+230,
+230,
+347,
+352,
+351,
+347],
+	            "all_points_y": [181,
+181,
+179,
+179,
+162,
+155,
+154,
+155,
+155,
+156,
+156,
+167,
+179,
+181]
+	          },
+	          "region_attributes": {
+	            "Spatial Annotation":"Character Line Segment",
+	            "Comments": ""
+	          },
+	          "timestamp": {
+	            "StartingTime": 6016533,
+	            "EndTime": 6035060
+	          }
+	        },{
+	          "shape_attributes": {
+	            "name": "polygon",
+	            "all_points_x": [ 350,
+340,
+240,
+187,
+118,
+76,
+72,
+77,
+199,
+222,
+336,
+358,
+362,
+350],
+	            "all_points_y": [129,
+127,
+127,
+126,
+129,
+129,
+112,
+105,
+105,
+102,
+102,
+112,
+123,
+129]
+	          },
+	          "region_attributes": {
+	            "Spatial Annotation":"Character Line Segment",
+	            "Comments": ""
+	          },
+	          "timestamp": {
+	            "StartingTime": 6016533,
+	            "EndTime": 6035060
+	          }
+	        },{
+	          "shape_attributes": {
+	            "name": "polygon",
+	            "all_points_x": [ 276,
+184,
+132,
+59,
+41,
+24,
+26,
+26,
+23,
+22,
+18,
+21,
+38,
+76,
+191,
+249,
+344,
+386,
+401,
+405,
+399,
+402,
+397,
+380,
+296,
+276],
+	            "all_points_y": [234,
+234,
+232,
+232,
+231,
+224,
+200,
+109,
+85,
+49,
+37,
+27,
+16,
+18,
+18,
+16,
+16,
+15,
+26,
+41,
+87,
+165,
+224,
+232,
+232,
+234]
+	          },
+	          "region_attributes": {
+	            "Spatial Annotation":"Page Boundary",
+	            "Comments": ""
+	          },
+	          "timestamp": {
+	            "StartingTime": 6016533,
+	            "EndTime": 6035060
+	          }
+	        },{
+	          "shape_attributes": {
+	            "name": "polygon",
+	            "all_points_x": [ 346,
+340,
+152,
+152,
+69,
+64,
+64,
+70,
+90,
+344,
+353,
+356,
+356,
+346],
+	            "all_points_y": [154,
+153,
+153,
+152,
+152,
+146,
+138,
+132,
+130,
+130,
+132,
+137,
+150,
+154]
+	          },
+	          "region_attributes": {
+	            "Spatial Annotation":"Character Line Segment",
+	            "Comments": ""
+	          },
+	          "timestamp": {
+	            "StartingTime": 6016533,
+	            "EndTime": 6035060
+	          }
+	        }
+	],
+	      "file_attributes": {}
+	    }
+	  },
+	  "_via_attributes": {
+	    "region": {
+	      "Spatial Annotation": {
+	        "type": "dropdown",
+	        "description": "",
+	        "options": {
+	          "Hole(Virtual)": "",
+	          "Hole(Physical)": "",
+	          "Character Line Segment": "",
+	          "Boundary Line": "",
+	          "Physical Degradation": "",
+	          "Page Boundary": "",
+	          "Character Component": "",
+	          "Picture": "",
+	          "Decorator": "",
+	          "Library Marker": ""
+	        },
+	        "default_options": {}
+	      },
+	      "Comments": {
+	        "type": "text",
+	        "description": "",
+	        "default_value": ""
+	      }
+	    },
+	    "file": {}
+	  },
+	  "file": "pih-66f032c9-ae57-4d4c-96dd-8269ad3ba558"
+	}
+	
