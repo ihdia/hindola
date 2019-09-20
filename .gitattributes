@@ -1,3 +1,5 @@
+*.h5 filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
 hindola/semi-automatic/Best.pth filter=lfs diff=lfs merge=lfs -text
 hindola/pretrained_model_indiscapes.h5 filter=lfs diff=lfs merge=lfs -text
 hindola/semi-automatic/epoch5_step2785.pth filter=lfs diff=lfs merge=lfs -text
