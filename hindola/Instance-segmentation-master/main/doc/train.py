@@ -20,7 +20,7 @@ import datetime
 import numpy as np
 import skimage.draw
 from skimage.transform import resize
-ROOT_DIR = os.path.abspath("D:\\groot\\test\\Instance-segmentation-master")
+ROOT_DIR = os.path.abspath("./Instance-segmentation-master")
 # ROOT_DIR = os.path.abspath("../../")
 sys.path.append(ROOT_DIR)
 from mrcnn.config import Config

@@ -1987,9 +1987,11 @@
 
 
             socket.on('autoResponse', function(data) {
-                //console.log(data);
+                console.log(data);
                 clearTimeout(automatic_timeout);
                 data_extra=JSON.parse(data);
+                console.log(data_extra);
+
                 if(data_extra.error == 1) {
                     window.alert("Automatic Annotation is not yet available for this image.");
                     if (processing_modal_off != 0) {
@@ -1998,7 +2000,21 @@
                     } 
                     return
                 }
-                project_open_parse_json_file(data)
+
+                _via_canvas_regions = data_extra.output;
+                _via_img_metadata[_via_image_id].regions = data_extra.output;
+
+                //var canvas_regs = [];
+                //var canvas_reg = [];
+                //canvas_regs = data;
+          
+                //for (i = 0; i < canvas_regs.length; i++) {
+                  //canvas_reg = [];
+                  //canvas_reg.shape_attr
+                //}
+
+                //project_open_parse_json_file(data);
+
                 _via_redraw_reg_canvas();
                 _via_reg_canvas.focus();
                 if (processing_modal_off != 0) {
@@ -2021,7 +2037,7 @@
                 pagenames = [];
 
                 for (i = 0; i < data.urls.length; i++) {
-                  pagelinks.push(data.urls[i]['links']);
+                  pagelinks.push(data.urls[i]['links'].substring(15));
                   pagenames.push(data.urls[i]['file']);
                 }
                 console.log(pagelinks);
@@ -2055,7 +2071,7 @@
               if (url) {
                 // TODO: switch off the update
                  // autoupdatetest();
-                 //url = "static/imgdata/" + url
+                 url = "static/imgdata/" + url.substring(30)
                  console.log(url)
                  project_file_add_url_with_input(url);
                   // dnewadded
@@ -9360,7 +9376,7 @@ POSSIBILITY OF SUCH DAMAGE.
         var w = Math.abs(bbox[2] - bbox[0]);
         var h = Math.abs(bbox[3] - bbox[1]);
 
-        var fileurl = _via_img_metadata[_via_image_id].filename;
+        var fileurl = "main/myproject/" + _via_img_metadata[_via_image_id].filename;
 
         console.log(x);
         console.log(y);
@@ -9391,7 +9407,7 @@ POSSIBILITY OF SUCH DAMAGE.
         }, 40000);
 
         reset_zoom_level();
-        var fileurl = _via_img_metadata[_via_image_id].filename;
+        var fileurl = "main/myproject/" + _via_img_metadata[_via_image_id].filename;
         console.log(fileurl)
         socket.emit('send_intelligent_details', {fileurl: fileurl, filename: current_file, flag: 1});
     
@@ -9662,6 +9678,7 @@ socket1.on('saveconfirmation',function(confirmation){
     function project_open_parse_json_file(json) {
       // TODO: ""(5)
       var d = JSON.parse(json);
+      console.log(d);
       current_file = d.file;
       console.log("current file:" + current_file);
       if (d['_via_settings'] && d['_via_img_metadata'] && d['_via_attributes']) {
@@ -9670,16 +9687,19 @@ socket1.on('saveconfirmation',function(confirmation){
 
         // import image metadata
         _via_img_metadata = d['_via_img_metadata'];
+        _via_img_metadata[""].filename = (_via_img_metadata[""].filename).substring(15)
         _via_image_id_list = [];
         _via_image_filename_list = [];
         _via_img_count = 0;
-        var img_id;
-        for (img_id in _via_img_metadata) {
-          _via_image_id_list.push(img_id);
-          _via_image_filename_list.push(_via_img_metadata[img_id].filename);
-          set_file_annotations_to_default_value(img_id);
-          _via_img_count += 1;
-        }
+        var img_id = "";
+        
+        _via_image_id_list.push(img_id);
+        console.log(_via_img_metadata[""].filename);
+        _via_image_filename_list.push(_via_img_metadata[""].filename);
+        //set_file_annotations_to_default_value(img_id);
+        set_file_annotations_to_default_value("");
+        _via_img_count += 1;
+        
 
         // import attributes
         _via_attributes = d['_via_attributes'];
@@ -11653,6 +11673,7 @@ function show_skip_modal(current_file){
     }
 
     function _via_img_buffer_add_image(img_index) {
+      //checkpoint
       return new Promise(function(ok_callback, err_callback) {
         if (_via_buffer_img_index_list.includes(img_index)) {
           //console.log('_via_img_buffer_add_image(): image ' + img_index + ' already exists in buffer!')

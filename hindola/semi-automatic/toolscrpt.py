@@ -16,6 +16,7 @@ import selectors
 import types
 import time
 from skimage import io
+from collections import OrderedDict
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if torch.cuda.is_available():
@@ -136,14 +137,27 @@ def convert_hull_to_cv(hull, w, h):
 
 model_path = '/semi-automatic/Best.pth'
 model = Model(256, 960, 3).to(device)
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
 print("Let's use", torch.cuda.device_count(), "GPUs!")
 # dim = 0 [20, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
-model = nn.DataParallel(model)
-model.to(device)
-model.load_state_dict(torch.load(model_path)["gcn_state_dict"])
+# model = nn.DataParallel(model)
 
+# state_dict = torch.load(model_path)
+if (torch.cuda.device_count() < 1):
+	state_dict = torch.load(model_path, map_location = lambda storage, loc: storage)
+	new_state_dict = OrderedDict()
+	for k, v in state_dict["gcn_state_dict"].items():
+		name = k[7:]
+		new_state_dict[name] = v
+	model.load_state_dict(new_state_dict)
+
+else:
+	model = nn.DataParallel(model)
+	state_dict = torch.load(model_path)
+	model.load_state_dict(state_dict["gcn_state_dict"])
+
+model.to(device)
 
 def get_edge(i_url,bbox):
 

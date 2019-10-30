@@ -327,7 +327,7 @@ def runtest(img,model,dataset,filename,name):
 	# print("intial")
 	# print(arr1,"arr")
 	# print(count1,"count")
-	ROOT_DIR = os.path.abspath("D:\\groot\\test\\Instance-segmentation-master")
+	ROOT_DIR = os.path.abspath("./Instance-segmentation-master")
 	perimeter_path = ROOT_DIR+"/main/doc/"
 	loaded_avg = np.load(perimeter_path+'perimeter.npy')
 	# arr = arr
@@ -595,7 +595,8 @@ def runtest(img,model,dataset,filename,name):
 	# print(count)
 
 
-	final_output = strt + rgns + end
+	#final_output = strt + rgns + end
+	final_output = '{"output": [' + rgns + '], "file": "' + str(name) + '", "url": "' + str(filename) + '"}'
 	#print(final_output)
 	return final_output
 

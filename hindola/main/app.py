@@ -64,7 +64,7 @@ def service_connection(key, mask):
 				if (json_output_data['flag'] == 1):
 					emit('autoResponse', recv_data.decode('utf-8'))
 					filename=str(json_output_data['file'])
-					tempu = str(((json_output_data['_via_img_metadata'])[''])['filename'])
+					tempu = str(json_output_data['url'])
 					print(tempu)
 					print('filename saved: '+ filename)
 					conn = mysql.connect()
@@ -904,7 +904,8 @@ def fetchURL(aid):
 		jsonfile={}
 		# give file id ,not n
 		jsonfile['file']=filename
-		jsonfile['imagelinks']="static/imgdata/" + str(imagelink[30:])
+		#jsonfile['imagelinks']="static/imgdata/" + str(imagelink[30:])
+		jsonfile['imagelinks']=str(imagelink)
 		data=json.dumps(jsonfile)
 		print(type(data))
 
