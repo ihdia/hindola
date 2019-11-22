@@ -376,7 +376,9 @@ def select_from_book(data):
 			tdic['file']=link['file']
 			tdic['links']=str(link['links'])
 			urls.append(tdic)      
+		print(urls)
 		urls = sorted(urls, key = lambda i: i['links'])
+		print(urls)
 		stat_B = 0
 
 		jsonfile={}
