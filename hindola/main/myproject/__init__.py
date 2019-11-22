@@ -16,8 +16,9 @@ log.disabled = True
 app.logger.disabled = True
 # Often people will also separate these into a separate config.py file
 app.config['SECRET_KEY'] = 'mysecretkey'
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
-socketio = SocketIO(app, cors_allowed_origins = '*')
+# cors = CORS(app, resources={r"/*": {"origins": "*"}})
+# socketio = SocketIO(app, cors_allowed_origins = '*')
+socketio = SocketIO(app)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')

@@ -2,6 +2,8 @@
 
 echo "Enter the absolute path to your dataset directory."
 read datasetdir
+echo "Enter the IP of your machine on the network you are connected to."
+read hostip
 
 cd ..
 cd ./save
@@ -14,6 +16,6 @@ cd ../hindola/
 #docker-compose up --build
 
 docker build -t hindola/local:latest .
-docker run -it -d --name hindola -e DB_USER=root -e DB_PASS=root -e DB_NAME=annotation_web -e DB_HOST=localhost -e APP_HOST=0.0.0.0 -e DATASET_LOC=${datasetdir} $(ls -la /dev | grep nvidia | sed 's/\s\s*/ /g' | cut -d ' ' -f 10 | while read -r line; do echo "--device /dev/$line:/dev/$line"; done | tr '\n' ' ') -v "${HINDOLA_SAVE_DIR}:/save" -v "${datasetdir}:/data" -p 10000:10000 hindola/local /bin/bash
+docker run -it -d --network host --runtime=nvidia --name hindola -e DB_USER=root -e DB_PASS=root -e DB_NAME=annotation_web -e DB_HOST=localhost -e APP_HOST=${hostip} -e DATASET_LOC=${datasetdir} $(ls -la /dev | grep nvidia | sed 's/\s\s*/ /g' | cut -d ' ' -f 10 | while read -r line; do echo "--device /dev/$line:/dev/$line"; done | tr '\n' ' ') -v "${HINDOLA_SAVE_DIR}:/save" -v "${datasetdir}:/data" -p ${hostip}:10000:10000 hindola/local /bin/bash
 docker exec -it -d $(docker ps -aqf "name=hindola") mysqld_safe --user=mysql
 docker exec -it $(docker ps -aqf "name=hindola") bash
