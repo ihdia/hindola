@@ -17,6 +17,7 @@ import types
 import time
 from skimage import io
 from collections import OrderedDict
+from simplification.cutil import simplify_coords
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 if torch.cuda.is_available():
@@ -135,7 +136,7 @@ def convert_hull_to_cv(hull, w, h):
 		original_hull.append([int((i[1]-5) * w / 80), int((i[0]-2) * h / 20)])
 	return original_hull
 
-model_path = '/semi-automatic/Best.pth'
+model_path = '/semi-automatic/LinesBest.pth'
 model = Model(256, 960, 3).to(device)
 # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
@@ -163,6 +164,7 @@ def get_edge(i_url,bbox):
 
 	err_val = 0
 	img = io.imread(i_url)
+	cv2.cvtColor(img, img, cv2.COLOR_RGB2BGR)
 
 	x0 = max(int(bbox[0]),0)
 	y0 = max(int(bbox[1]),0)
@@ -187,7 +189,7 @@ def get_edge(i_url,bbox):
 	img = torch.transpose(img, 2, 3)
 	img = img.float()
 
-	edge_logits, tg2 = model(img.to(device))
+	edge_logits, tg2, class_prob = model(img.to(device))
 	edge_logits = torch.sigmoid(edge_logits)
 
 	edge_logits = edge_logits[0,0,:,:].cpu().detach().numpy()
@@ -198,7 +200,7 @@ def get_edge(i_url,bbox):
 		for k in range((len(edge_logits[j]))):
 			j1 = math.floor(j)
 			k1 = math.floor(k)
-			if edge_logits[j][k]>0.55:
+			if edge_logits[j][k]>0.6:
 				arrs1[j1+2][k1+5]= 255
 
 
@@ -224,16 +226,19 @@ def get_edge(i_url,bbox):
 		return i_url, [], [], err_val
 
 	hull = np.asarray(hull)
+
+	hull = simplify_coords(hull, 0.1)
+
 	hull = hull.tolist()
 
 
 	original_hull = convert_hull_to_cv(hull, w, h)
 
-	total_points = 400
+	total_points = 200
 	# original_hull = uniformsample(np.asarray(original_hull), total_points).astype(int)
 	original_hull = np.asarray(original_hull).astype(int)
-	all_points_x = (original_hull[:,0] + x0).tolist()
-	all_points_y = (original_hull[:,1] + y0).tolist()
+	all_points_x = np.int32((original_hull[:,0] + x0)).tolist()
+	all_points_y = np.int32((original_hull[:,1] + y0)).tolist()
 
 	# all_points_x = simplify_coords_vw(all_points_x, 30.0)
 	# all_points_y = simplify_coords_vw(all_points_y, 30.0)
