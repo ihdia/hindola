@@ -340,7 +340,7 @@ def select_from_book(data):
 	# select_from_book('name')
 	n=0
 	# uids=UIDS.query.all()
-	data['book'] = data['book'].replace(' ', '%20')
+	#data['book'] = data['book'].replace(' ', '%20')
 
 	conn = mysql.connect()
 	cursor = conn.cursor()
