@@ -163,8 +163,8 @@ model.to(device)
 def get_edge(i_url,bbox):
 
 	err_val = 0
-	img = io.imread(i_url)
-	cv2.cvtColor(img, img, cv2.COLOR_RGB2BGR)
+	img = cv2.imread(i_url)
+	#cv2.cvtColor(img, img, cv2.COLOR_RGB2BGR)
 
 	x0 = max(int(bbox[0]),0)
 	y0 = max(int(bbox[1]),0)

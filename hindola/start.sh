@@ -6,7 +6,7 @@ python3 service_tools/queue.py &
 python3 Instance-segmentation-master/main/doc/modeltest.py &
 #INSTSEG = $(echo $!)
 #export INSTSEG
-python3 semi-automatic/toolscrpt2.py &
+python3 semi-automatic/toolscrpt.py &
 #BBOX = $(echo $!)
 #export BBOX
 python3 main/app.py ${DB_USER} ${DB_PASS} ${DB_NAME} ${DB_HOST} ${APP_HOST} ${DATASET_LOC} &

@@ -51,6 +51,9 @@ MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 config = train.Config()
 MAIN_DIR = os.path.join(ROOT_DIR, "datasets/doc")
 
+
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 # filename =" "
 
 
@@ -59,7 +62,7 @@ MAIN_DIR = os.path.join(ROOT_DIR, "datasets/doc")
 
 # if __name__ == '__main__':
 
-
+11
 	# arr1 = np.zeros(11)
 	# count1 = np.zeros(11)
 # print (Polygon([[0,0], [4,0], [2,4]]).length,"length")
