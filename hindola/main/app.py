@@ -762,6 +762,25 @@ def fetchNext(n):
 	#     temp.status="skipped"
 	#     db.session.commit()
 
+	sql="SELECT * FROM skippedimages WHERE filename=%s;"
+	data=(filename)
+	cursor.execute(sql,data)
+	record = cursor.fetchone()
+	conn.commit()
+	if (record):
+		count = record['count']
+		count = count + 1
+		sql="UPDATE skippedimages SET count=%s WHERE filename=%s;"
+		data=(count, filename)
+		cursor.execute(sql,data)
+		conn.commit()
+	else:
+		sql="INSERT INTO skippedimages (filename, count) VALUES(%s, %s);"
+		count = 1
+		data=(filename, count)
+		cursor.execute(sql,data)
+		conn.commit()
+
 	status="skipped"
 	sql = "UPDATE info SET status=%s WHERE file=%s and username=%s"
 	data = (status,filename,current_user.username)
@@ -864,7 +883,11 @@ def fetchURL(aid):
 		print(de)
 		global stat_B
 		if de <= 0:
-				cursor.execute("SELECT * FROM uids ORDER BY RAND() LIMIT 1;")
+				cursor.execute("SELECT * FROM collections ORDER BY RAND() LIMIT 1;")
+				dset = cursor.fetchone()
+				conn.commit()
+				dprefix = dset['prefix']
+				cursor.execute('SELECT * FROM uids WHERE filename WHERE links LIKE \"%' + dprefix + '%\" ORDER BY RAND() LIMIT 1;')
 				uid = cursor.fetchone()
 				conn.commit()
 				filename=uid['ufile']

@@ -34,6 +34,12 @@ for foldername in os.listdir(arg5):
 
 imagelinks = []
 
+for folder in foldernames:
+	sql = "INSERT INTO collections (name, prefix) VALUES (%s, %s);"
+	val = (folder['name'],folder['prefix'])
+	mycursor.execute(sql, val)
+	mydb.commit()
+
 def rec(path):
 	for item in os.scandir(path):
 		if item.is_dir():
